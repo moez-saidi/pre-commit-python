@@ -4,16 +4,16 @@ repos:
     hooks:
     - id: black
       name: Black Python code formatting
-      entry: bash -c 'black "$@" || true' -- # doesn't block commit on fail
-      # entry: black # block commit on fail
+      # entry: bash -c 'black "$@" || true' -- # doesn't block commit on fail
+      entry: black # block commit on fail
       language: python
-      language_version: python3.9
+      # language_version: python3.9
       types: [python]
       args: [
         "--check",
         "--diff",
         "--line-length=88",
-        "--skip-string-normalization=true",
+        "--skip-string-normalization",
         ]
       fail_fast: true
       verbose: true
@@ -25,10 +25,10 @@ repos:
     hooks:
       - id: isort
         name: Sorting import statements
-        entry: bash -c 'isort "$@" || true' --  # doesn't block commit on fail
-        # entry: isort # block commit on fail
+        # entry: bash -c 'isort "$@" || true' --  # doesn't block commit on fail
+        entry: isort # block commit on fail
         language: python
-        language_version: python3.9
+        # language_version: python3.9
         args: [
           "--check-only",
           "--diff",
@@ -46,9 +46,9 @@ repos:
     hooks:
     - id: flake8
       language: python
-      language_version: python3.9
-      entry: bash -c 'flake8 "$@" || true' -- # doesn't block commit on fail
-      # entry: flake8 # block commit on fail
+      # language_version: python3.9
+      # entry: bash -c 'flake8 "$@" || true' -- # doesn't block commit on fail
+      entry: flake8 # block commit on fail
       args: ["--max-line-length=88"]
       fail_fast: true
       verbose: true
